@@ -1,0 +1,59 @@
+#!/bin/dash
+
+# ==============================================================================
+# tigger-commit
+# Written by: Jinming Liu <z5373811@unsw.edu.au>
+# Date: 2022-07-11
+# For COMP2041/9044 Assignment 1
+# ==============================================================================
+
+#the function of -a option
+refresh_index() {
+    find .tigger/index/master -type f > tmp
+    while read -r file
+    do
+        file_basename=$(basename "$file")
+        if ! diff "./$file_basename" ".tigger/index/master/$file_basename" >/dev/null 2>/dev/null; then
+            cp "./$file_basename" ".tigger/index/master/$file_basename"
+            echo "add $file_basename" >> ".tigger/add.log"
+        fi
+    done < tmp
+    rm tmp
+
+    return 0
+}
+
+commit_index() {
+    commit_msg="$1"
+    #judge whether user have add to index after last commit
+    if [ -s ".tigger/add.log" ]; then
+        last_no=$(tail -1 < .tigger/commit.log | cut -d' ' -f1)
+        [ "$last_no" = "" ] && snapshot_no=0 || snapshot_no=$((last_no + 1))
+        mkdir ".tigger/snapshot/master/$snapshot_no"
+        cp ".tigger/index/master/"* ".tigger/snapshot/master/$snapshot_no/" 2>/dev/null
+        #reset add log
+        echo -n "" > .tigger/add.log
+        #write commit log
+        echo "$snapshot_no $commit_msg" >> .tigger/commit.log
+        echo "Committed as commit $snapshot_no"
+
+        return 0
+    else
+        echo "nothing to commit"
+
+        return 1
+    fi
+}
+
+#main method
+while [ -n "$1" ]
+do
+    case "$1" in
+        -a) refresh_index;;
+        -m) commit_msg="$2"
+            commit_index "$commit_msg" && exit 0 || exit 1;;
+        *)  echo "input error"
+            exit 1;;
+    esac
+    shift
+done

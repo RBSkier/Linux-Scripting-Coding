@@ -1,0 +1,372 @@
+<mxfile host="65bd71144e">
+    <diagram id="s61S6bFw20cqYgtlLcB9" name="第 1 页">
+        <mxGraphModel dx="2884" dy="917" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-1" value="最新commit+工作区+add.log文件名（去重）" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="340" y="170" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-2" value="index里有没这个文件）" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="250" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-3" value="有没commit" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry y="469.82" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-4" value="&lt;font face=&quot;SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace&quot; color=&quot;#212529&quot;&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;untracked&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="470" y="450" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-8" value="&lt;span style=&quot;color: rgb(33, 37, 41); font-family: SFMono-Regular, Menlo, Monaco, Consolas, &amp;quot;Liberation Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px;&quot;&gt;added to index&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="674.7800000000001" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-9" value="commit后是否改动过(对比工作区和快照)" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-130" y="569.82" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-11" value="&lt;span style=&quot;color: rgb(33, 37, 41); font-family: SFMono-Regular, Menlo, Monaco, Consolas, &amp;quot;Liberation Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px;&quot;&gt;same as repo&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-80" y="679.8600000000001" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-16" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="_C6vmUOKcX1XVLMZfnyP-2" target="_C6vmUOKcX1XVLMZfnyP-1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="340" y="530" as="sourcePoint"/>
+                        <mxPoint x="390" y="480" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-17" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="_C6vmUOKcX1XVLMZfnyP-3" target="_C6vmUOKcX1XVLMZfnyP-9" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="70" y="549.82" as="sourcePoint"/>
+                        <mxPoint x="14" y="794.7400000000001" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-53" value="有" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="_C6vmUOKcX1XVLMZfnyP-17" vertex="1" connectable="0">
+                    <mxGeometry x="-0.192" y="-1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-20" value="index更新过改动了没" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-210" y="679.8600000000001" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-22" value="&lt;span style=&quot;font-family: SFMono-Regular, Menlo, Monaco, Consolas, &amp;quot;Liberation Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px;&quot;&gt;file changed, changes not staged for commit&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontColor=#FFFFFF;" parent="1" vertex="1">
+                    <mxGeometry x="-180" y="779.8600000000001" width="160" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-26" value="最近改动有add吗" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-290" y="779.8600000000001" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-27" value="&lt;span style=&quot;font-family: SFMono-Regular, Menlo, Monaco, Consolas, &amp;quot;Liberation Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px;&quot;&gt;file changed, changes staged for commit&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontColor=#FFFFFF;" parent="1" vertex="1">
+                    <mxGeometry x="-400" y="884.8600000000001" width="130" height="65" as="geometry"/>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-28" value="&lt;span style=&quot;font-family: SFMono-Regular, Menlo, Monaco, Consolas, &amp;quot;Liberation Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; background-color: initial;&quot;&gt;file changed, different changes staged for commit&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#6a00ff;strokeColor=#3700CC;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="-230" y="884.8600000000001" width="140" height="65" as="geometry"/>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-31" value="工作区有没这个文件" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="160" y="349.82" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-32" value="&lt;span style=&quot;font-size: 14px&quot;&gt;&lt;font color=&quot;#ffffff&quot;&gt;file deleted（上次commit后立刻删了）&lt;/font&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#6a00ff;fontColor=#ffffff;strokeColor=#3700CC;" parent="1" vertex="1">
+                    <mxGeometry x="396.29" y="574.86" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-35" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="_C6vmUOKcX1XVLMZfnyP-31" target="_C6vmUOKcX1XVLMZfnyP-3" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="420" y="609.82" as="sourcePoint"/>
+                        <mxPoint x="470" y="559.82" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-50" value="有" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="_C6vmUOKcX1XVLMZfnyP-35" vertex="1" connectable="0">
+                    <mxGeometry x="0.4971" y="-3" relative="1" as="geometry">
+                        <mxPoint x="-11" y="-14" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-37" value="deleted" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="590" y="560" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-38" value="&lt;span style=&quot;&quot;&gt;工作区有没有这个文件&lt;/span&gt;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="570" y="350" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-48" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="_C6vmUOKcX1XVLMZfnyP-60" target="_C6vmUOKcX1XVLMZfnyP-31" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="170" y="624.82" as="sourcePoint"/>
+                        <mxPoint x="180" y="429.82" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-49" value="没" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="_C6vmUOKcX1XVLMZfnyP-48" vertex="1" connectable="0">
+                    <mxGeometry x="0.2031" y="-3" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-51" value="added to index, file changed" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="674.7800000000001" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-52" value="add过以后有没又改了working file" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="140" y="564.7800000000001" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-54" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="_C6vmUOKcX1XVLMZfnyP-3" target="_C6vmUOKcX1XVLMZfnyP-52" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="70" y="549.82" as="sourcePoint"/>
+                        <mxPoint x="230" y="579.7800000000001" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-55" value="没" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="_C6vmUOKcX1XVLMZfnyP-54" vertex="1" connectable="0">
+                    <mxGeometry x="-0.2195" y="-3" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-56" value="" style="endArrow=none;html=1;rounded=0;exitX=0.433;exitY=-0.017;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="_C6vmUOKcX1XVLMZfnyP-8" target="_C6vmUOKcX1XVLMZfnyP-52" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="400" y="759.7800000000001" as="sourcePoint"/>
+                        <mxPoint x="450" y="709.7800000000001" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-57" value="没" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="_C6vmUOKcX1XVLMZfnyP-56" vertex="1" connectable="0">
+                    <mxGeometry x="0.2904" y="-2" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-58" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="_C6vmUOKcX1XVLMZfnyP-51" target="_C6vmUOKcX1XVLMZfnyP-52" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="440" y="709.7800000000001" as="sourcePoint"/>
+                        <mxPoint x="490" y="659.7800000000001" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-59" value="有" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="_C6vmUOKcX1XVLMZfnyP-58" vertex="1" connectable="0">
+                    <mxGeometry x="0.2757" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-60" value="有没它的add日志" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="346.29" y="464.86" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-61" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="_C6vmUOKcX1XVLMZfnyP-31" target="_C6vmUOKcX1XVLMZfnyP-2" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="270" y="360" as="sourcePoint"/>
+                        <mxPoint x="330" y="400" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-62" value="有" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="_C6vmUOKcX1XVLMZfnyP-61" vertex="1" connectable="0">
+                    <mxGeometry x="0.1833" y="-2" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-63" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="_C6vmUOKcX1XVLMZfnyP-2" target="_C6vmUOKcX1XVLMZfnyP-38" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="530" y="400" as="sourcePoint"/>
+                        <mxPoint x="580" y="350" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-64" value="没" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="_C6vmUOKcX1XVLMZfnyP-63" vertex="1" connectable="0">
+                    <mxGeometry x="0.1252" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-67" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="_C6vmUOKcX1XVLMZfnyP-4" target="_C6vmUOKcX1XVLMZfnyP-38" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="230" y="610" as="sourcePoint"/>
+                        <mxPoint x="280" y="560" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-77" value="有" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="_C6vmUOKcX1XVLMZfnyP-67" vertex="1" connectable="0">
+                    <mxGeometry x="-0.2512" y="3" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-68" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;fillColor=#6a00ff;strokeColor=#FFFFFF;" parent="1" source="_C6vmUOKcX1XVLMZfnyP-32" target="_C6vmUOKcX1XVLMZfnyP-60" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="256.28999999999996" y="679.86" as="sourcePoint"/>
+                        <mxPoint x="306.28999999999996" y="629.86" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-69" value="没" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="_C6vmUOKcX1XVLMZfnyP-68" vertex="1" connectable="0">
+                    <mxGeometry x="0.38" y="-4" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-70" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="_C6vmUOKcX1XVLMZfnyP-71" target="_C6vmUOKcX1XVLMZfnyP-60" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="336.29" y="709.86" as="sourcePoint"/>
+                        <mxPoint x="426.29" y="689.86" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-72" value="有" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="_C6vmUOKcX1XVLMZfnyP-70" vertex="1" connectable="0">
+                    <mxGeometry x="0.1945" y="-1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-71" value="added to index, file deleted（add后立刻删了）" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="266.28999999999996" y="574.86" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-73" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="_C6vmUOKcX1XVLMZfnyP-20" target="_C6vmUOKcX1XVLMZfnyP-9" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="-156" y="864.7400000000001" as="sourcePoint"/>
+                        <mxPoint x="-106" y="814.7400000000001" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-74" value="有" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="_C6vmUOKcX1XVLMZfnyP-73" vertex="1" connectable="0">
+                    <mxGeometry x="0.46" y="-2" relative="1" as="geometry">
+                        <mxPoint x="8" y="15" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-75" value="没" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="_C6vmUOKcX1XVLMZfnyP-9" target="_C6vmUOKcX1XVLMZfnyP-11" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="-160" y="672.3000000000002" as="sourcePoint"/>
+                        <mxPoint x="44" y="877.2200000000001" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-76" value="日志里有没这个文件的记录" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="670" y="450" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-78" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="_C6vmUOKcX1XVLMZfnyP-76" target="_C6vmUOKcX1XVLMZfnyP-38" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="510" y="516.05" as="sourcePoint"/>
+                        <mxPoint x="590" y="436.05" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-79" value="没" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="_C6vmUOKcX1XVLMZfnyP-78" vertex="1" connectable="0">
+                    <mxGeometry x="0.1971" y="-2" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-80" value="不输出内容" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="720" y="560" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <object label="" id="_C6vmUOKcX1XVLMZfnyP-81">
+                    <mxCell style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="_C6vmUOKcX1XVLMZfnyP-37" target="_C6vmUOKcX1XVLMZfnyP-76" edge="1">
+                        <mxGeometry width="50" height="50" relative="1" as="geometry">
+                            <mxPoint x="650" y="610" as="sourcePoint"/>
+                            <mxPoint x="700" y="560" as="targetPoint"/>
+                        </mxGeometry>
+                    </mxCell>
+                </object>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-82" value="有" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="_C6vmUOKcX1XVLMZfnyP-81" vertex="1" connectable="0">
+                    <mxGeometry x="0.5189" y="-2" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-83" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="_C6vmUOKcX1XVLMZfnyP-76" target="_C6vmUOKcX1XVLMZfnyP-80" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="320" y="420" as="sourcePoint"/>
+                        <mxPoint x="370" y="370" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-84" value="没" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="_C6vmUOKcX1XVLMZfnyP-83" vertex="1" connectable="0">
+                    <mxGeometry x="0.2667" y="-3" relative="1" as="geometry">
+                        <mxPoint x="-16" y="-12" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-89" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="_C6vmUOKcX1XVLMZfnyP-22" target="_C6vmUOKcX1XVLMZfnyP-20" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="-316" y="724.8200000000002" as="sourcePoint"/>
+                        <mxPoint x="-266" y="674.8200000000002" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-90" value="没" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="_C6vmUOKcX1XVLMZfnyP-89" vertex="1" connectable="0">
+                    <mxGeometry x="0.1831" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-91" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="_C6vmUOKcX1XVLMZfnyP-26" target="_C6vmUOKcX1XVLMZfnyP-20" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="-286" y="784.8200000000002" as="sourcePoint"/>
+                        <mxPoint x="-236" y="734.8200000000002" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-92" value="有" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="_C6vmUOKcX1XVLMZfnyP-91" vertex="1" connectable="0">
+                    <mxGeometry x="0.2681" y="2" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-93" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="_C6vmUOKcX1XVLMZfnyP-27" target="_C6vmUOKcX1XVLMZfnyP-26" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="-294" y="884.8600000000001" as="sourcePoint"/>
+                        <mxPoint x="-229" y="859.8600000000001" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-94" value="有" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="_C6vmUOKcX1XVLMZfnyP-93" vertex="1" connectable="0">
+                    <mxGeometry x="0.2283" y="1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_C6vmUOKcX1XVLMZfnyP-95" value="没" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="_C6vmUOKcX1XVLMZfnyP-28" target="_C6vmUOKcX1XVLMZfnyP-26" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="-486" y="704.8200000000002" as="sourcePoint"/>
+                        <mxPoint x="-436" y="654.8200000000002" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="2" value="&lt;font face=&quot;SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace&quot;&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;untracked&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="470" y="450" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="&lt;span style=&quot;font-family: SFMono-Regular, Menlo, Monaco, Consolas, &amp;quot;Liberation Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px;&quot;&gt;added to index&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="200" y="674.7800000000001" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="&lt;span style=&quot;font-family: SFMono-Regular, Menlo, Monaco, Consolas, &amp;quot;Liberation Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px;&quot;&gt;same as repo&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="-80" y="679.8600000000001" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="最新commit+工作区+add.log文件名（去重）" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="340" y="170" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="&lt;font face=&quot;SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace&quot;&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;untracked&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="470" y="450" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="deleted" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="590" y="560" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="不输出内容" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="720" y="560" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="最新commit+工作区+add.log文件名（去重）" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="340" y="170" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="&lt;font face=&quot;SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace&quot;&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;untracked&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="470" y="450" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="deleted" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="590" y="560" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="不输出内容" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="720" y="560" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="added to index, file deleted（add后立刻删了）" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="266.28999999999996" y="574.86" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="added to index, file changed" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="60" y="674.7800000000001" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="&lt;span style=&quot;font-family: SFMono-Regular, Menlo, Monaco, Consolas, &amp;quot;Liberation Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px;&quot;&gt;added to index&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="200" y="674.7800000000001" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="&lt;span style=&quot;font-family: SFMono-Regular, Menlo, Monaco, Consolas, &amp;quot;Liberation Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px;&quot;&gt;same as repo&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="-80" y="679.8600000000001" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="&lt;span style=&quot;font-family: SFMono-Regular, Menlo, Monaco, Consolas, &amp;quot;Liberation Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px;&quot;&gt;file changed, changes not staged for commit&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="-180" y="779.8600000000001" width="160" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="最新commit+工作区+add.log文件名（去重）" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#6a00ff;strokeColor=#3700CC;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="340" y="170" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="&lt;font face=&quot;SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace&quot;&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;untracked&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#6a00ff;strokeColor=#3700CC;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="470" y="450" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="deleted" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#6a00ff;strokeColor=#3700CC;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="590" y="560" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="不输出内容" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#6a00ff;strokeColor=#3700CC;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="720" y="560" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="added to index, file deleted（add后立刻删了）" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#6a00ff;strokeColor=#3700CC;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="266.28999999999996" y="574.86" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="added to index, file changed" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#6a00ff;strokeColor=#3700CC;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="60" y="674.7800000000001" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="&lt;span style=&quot;font-family: SFMono-Regular, Menlo, Monaco, Consolas, &amp;quot;Liberation Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px;&quot;&gt;added to index&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#6a00ff;strokeColor=#3700CC;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="200" y="674.7800000000001" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="&lt;span style=&quot;font-family: SFMono-Regular, Menlo, Monaco, Consolas, &amp;quot;Liberation Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px;&quot;&gt;same as repo&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#6a00ff;strokeColor=#3700CC;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="-80" y="679.8600000000001" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="&lt;span style=&quot;font-family: SFMono-Regular, Menlo, Monaco, Consolas, &amp;quot;Liberation Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px;&quot;&gt;file changed, changes not staged for commit&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#6a00ff;strokeColor=#3700CC;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="-180" y="779.8600000000001" width="160" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="&lt;span style=&quot;font-family: SFMono-Regular, Menlo, Monaco, Consolas, &amp;quot;Liberation Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px;&quot;&gt;file changed, changes staged for commit&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#6a00ff;strokeColor=#3700CC;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="-400" y="884.8600000000001" width="130" height="65" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

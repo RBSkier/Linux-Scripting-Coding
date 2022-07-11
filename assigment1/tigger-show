@@ -1,0 +1,38 @@
+#!/bin/dash
+
+# ==============================================================================
+# tigger-show
+# Written by: Jinming Liu <z5373811@unsw.edu.au>
+# Date: 2022-07-11
+# For COMP2041/9044 Assignment 1
+# ==============================================================================
+
+#recognize arguments
+snapshot_no=$(echo "$1" | sed -E 's/([0-9]*):.*/\1/g')
+file=$(echo "$1" | sed -E 's/[0-9]*:(.*)/\1/g')
+
+#judge whether number is provided
+if [ "$snapshot_no" != '' ]; then
+    #judge whether snapshot_num is in the scope
+    latest_snapshot_no=$(tail -1 < .tigger/commit.log | cut -d' ' -f1)
+    if [ "$snapshot_no" -gt "$latest_snapshot_no" ]; then
+        echo "$0: error: unknown commit '$snapshot_no'" >&2
+        exit 1
+    fi
+    #judge whether the file exists
+    if [ ! -e ".tigger/snapshot/master/$snapshot_no/$file" ]; then
+        echo "$0: error: '$file' not found in commit $snapshot_no" >&2
+        exit 1
+    else
+        cat ".tigger/snapshot/master/$snapshot_no/$file"
+    fi
+else
+    if [ ! -e .tigger/index/master/"$file" ]; then
+        echo "$0: error: '$file' not found in index" >&2
+        exit 1
+    else
+        cat ".tigger/index/master/$file"
+    fi
+fi
+
+exit 0

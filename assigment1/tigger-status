@@ -1,0 +1,54 @@
+#!/bin/dash
+
+
+# ==============================================================================
+# tigger-status
+# Written by: Jinming Liu <z5373811@unsw.edu.au>
+# Date: 2022-07-11
+# For COMP2041/9044 Assignment 1
+# ==============================================================================
+
+show_file_status() {
+    file=$1
+    last_no=$2
+
+    if [ ! -e ".tigger/index/master/$file" ]; then
+        [ -e "$file" ] && echo "$file - untracked" || echo "$file - deleted"
+    else
+        if [ ! -e "$file" ]; then
+            cut -d' ' -f2 < .tigger/add.log | grep "$file" >/dev/null && add_flag=true || add_flag=false
+            [ "$add_flag" = "true" ] && echo "$file - added to index, file deleted" || echo "$file - file deleted"
+        else
+            if [ ! -e ".tigger/snapshot/master/$last_no/$file" ]; then
+                diff "$file" ".tigger/index/master/$file" >/dev/null 2>/dev/null && echo "$file - added to index" || echo "$file - added to index, file changed"
+            else
+                if diff "$file" ".tigger/snapshot/master/$last_no/$file" >/dev/null 2>/dev/null; then #this working file haven't changed since last commit
+                    echo "$file - same as repo"
+                else
+                    cut -d' ' -f2 < .tigger/add.log | grep "$file" >/dev/null && add_flag=true || add_flag=false
+                    if [ "$add_flag" = "false" ]; then #this file haven't added since last commit
+                        echo "$file - file changed, changes not staged for commit"
+                    else
+                        #this working file is the same as index file?
+                        diff "$file" ".tigger/index/master/$file" >/dev/null 2>/dev/null && echo "$file - file changed, changes staged for commit" || echo "$file - file changed, different changes staged for commit"
+                    fi
+                fi
+            fi
+        fi
+    fi
+}
+
+#main method
+last_no=$(tail -1 < .tigger/commit.log | cut -d' ' -f1)
+find ".tigger/snapshot/master/$last_no/" -type f | sed 's#.*/##g' > /tmp/raw_file_list
+find . -type f | grep -Ev '(./.tigger/)' | sed 's#.*/##g' >> /tmp/raw_file_list
+cut -d' ' -f2 .tigger/add.log >> /tmp/raw_file_list
+sort /tmp/raw_file_list | uniq > /tmp/file_list
+
+#loop echo file and echo their status
+while read -r file
+do
+    show_file_status "$file" "$last_no"
+done < /tmp/file_list
+
+rm /tmp/raw_file_list /tmp/file_list

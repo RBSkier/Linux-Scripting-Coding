@@ -1,0 +1,85 @@
+#!/bin/dash
+
+
+# ==============================================================================
+# tigger-rm
+# Written by: Jinming Liu <z5373811@unsw.edu.au>
+# Date: 2022-07-11
+# For COMP2041/9044 Assignment 1
+# ==============================================================================
+
+#function
+del_index_files() {
+    for file in "$@"
+    do  
+        if rm .tigger/index/master/"$file" 2>/dev/null; then
+            echo "rm $file" >> ".tigger/add.log"
+        else
+            echo "$0: error: '$file' is not in the tigger repository"
+            return 1
+        fi
+    done
+
+}
+
+del_workspace_file() {
+    for file in "$@"
+    do
+        rm "$file"
+    done
+}
+
+#recognize argvs
+for argv in "$@"
+do
+    case $argv in
+    --force)
+        force_flag=true
+        continue;;
+    --cached)
+        cached_flag=true
+        continue;;
+    *)
+        if [ -e "$argv" ]; then
+            [ "$filenames" = "" ] && filenames="$argv" || filenames="${filenames} ${argv}"
+        else
+            echo "file not exist" 
+            exit 1
+        fi;;
+    esac
+done
+
+#main method
+if [ "$force_flag" = "true" ] && [ "$cached_flag" != "true" ]; then
+    del_index_files $filenames && del_workspace_file "$filenames"
+    eval sed -i '/$filenames/d' ".tigger/add.log"
+    exit 0
+elif [ "$force_flag" = "true" ] && [ "$cached_flag" = "true" ]; then
+    del_index_files $filenames
+    exit 0
+elif [ "$force_flag" != "true" ] && [ "$cached_flag" = "true" ]; then
+    cut -d' ' -f2 < .tigger/add.log | grep "$filenames" >/dev/null && add_flag=true || add_flag=false
+    diff "$filenames" ".tigger/index/master/$filenames" >/dev/null 2>/dev/null && change_flag=false || change_flag=true
+    if [ "$change_flag" = "false" ]; then
+        [ -e ".tigger/index/master/$filenames" ] && del_index_files $filenames
+    else #working file changed. If no add, execute delete. Else if added before, output error.
+        if [ "$add_flag" = "false" ]; then
+            del_index_files $filenames
+        else
+            echo "$0: error: '$filenames' in index is different to both the working file and the repository"
+        fi
+    fi
+    exit 0
+elif [ "$force_flag" != "true" ] && [ "$cached_flag" != "true" ]; then
+    cut -d' ' -f2 < .tigger/add.log | grep "$filenames" >/dev/null && add_flag=true || add_flag=false
+    diff "$filenames" ".tigger/index/master/$filenames" >/dev/null 2>/dev/null && change_flag=false || change_flag=true
+    if [ "$add_flag" = "false" ] && [ "$change_flag" = "false" ]; then
+        del_index_files $filenames && del_workspace_file $filenames
+    elif [ "$add_flag" = "false" ] && [ "$change_flag" = "true" ]; then
+        [ -e ".tigger/index/master/$filenames" ] && echo "$0: error: '$filenames' in the repository is different to the working file" || echo "$0: error: '$filenames' is not in the tigger repository"
+    elif [ "$add_flag" = "true" ] && [ "$change_flag" = "true" ]; then
+        echo "$0: error: '$filenames' in index is different to both the working file and the repository"
+    elif [ "$add_flag" = "true" ] && [ "$change_flag" = "false" ]; then
+        echo "$0: error: '$filenames' has staged changes in the index"
+    fi
+fi

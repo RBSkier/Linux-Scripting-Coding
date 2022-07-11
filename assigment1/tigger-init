@@ -1,0 +1,30 @@
+#!/bin/dash
+
+#judge whether the .tigger direcory already exists.
+
+# ==============================================================================
+# tigger-init
+# Written by: Jinming Liu <z5373811@unsw.edu.au>
+# Date: 2022-07-11
+# For COMP2041/9044 Assignment 1
+# ==============================================================================
+
+
+tigger_base=".tigger"
+if [ ! -d "$tigger_base" ]; then
+    mkdir "$tigger_base"
+    mkdir "$tigger_base/index"
+    mkdir "$tigger_base/index/master"
+    mkdir "$tigger_base/snapshot"
+    mkdir "$tigger_base/snapshot/master"
+    touch "$tigger_base/commit.log" 
+    touch "$tigger_base/add.log"
+    touch "$tigger_base/branches.txt"
+    touch "$tigger_base/current_branch.txt"
+    echo "Initialized empty tigger repository in .tigger"
+else
+    echo "$0: error: .tigger already exists" >&2
+    exit 1
+fi
+
+exit 0

@@ -1,0 +1,39 @@
+#!/bin/dash
+
+# ==============================================================================
+# tigger-add
+# Written by: Jinming Liu <z5373811@unsw.edu.au>
+# Date: 2022-07-11
+# For COMP2041/9044 Assignment 1
+# ==============================================================================
+
+#judge whether the .tigger direcory exists.
+if [ ! -e .tigger ]; then
+    echo "$0: error: tigger repository directory .tigger not found" >&2
+    exit 1
+fi
+
+#cp file from work space to index 
+for file in "$@"
+do
+    if ! diff "$file" ".tigger/index/master/$file" >/dev/null 2>/dev/null; then
+        #if working_file not exist and index file exist, rm index file
+        if [ ! -e "$file" ]; then
+            if [ -e ".tigger/index/master/$file" ]; then
+                rm ".tigger/index/master/$file"
+                echo "rm $file" >> .tigger/add.log
+            else
+                echo "$0: error: can not open '$file'" >&2
+                exit 1
+            fi
+        else
+            cp "$file" ".tigger/index/master/$file"
+            echo "add $file" >> .tigger/add.log
+        fi
+    fi
+done
+
+exit 0
+
+
+
