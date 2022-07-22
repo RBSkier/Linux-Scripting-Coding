@@ -3,21 +3,21 @@
 import sys, os, re, math
 
 phrase = sys.argv[1:]
-phrase_prob = {}
+prob_dict = {}
 
 for dirpath, dirnames, filenames in os.walk(r"lyrics/"):
     for filename in sorted(filenames):
         with open(dirpath + filename) as infile:
             content = infile.read()
-            word_count = re.findall(r'[a-zA-Z]+', content)
+            all_word_num = len(re.findall(r'[a-zA-Z]+', content))
             artist = filename.replace('.txt', '').replace('_', ' ')
             for word in phrase:
-                match_count = re.findall(r'\b' + word + r'\b', content, flags = re.I)
-                word_prob = math.log(float(format(len(match_count)/len(word_count), '.9f')))
-                if artist in phrase_prob.keys():
-                    phrase_prob[artist] += word_prob
+                match_count = len(re.findall(r'\b' + word + r'\b', content, flags=re.I))
+                word_log_prob = math.log((match_count + 1)/all_word_num)
+                if artist in prob_dict.keys():
+                    prob_dict[artist] += word_log_prob
                 else:
-                    phrase_prob[artist] = word_prob
+                    prob_dict[artist] = word_log_prob
 
-print(phrase_prob)
-                
+for artist, log_prob in prob_dict.items():
+    print(f"{log_prob:10.5f} {artist}")
