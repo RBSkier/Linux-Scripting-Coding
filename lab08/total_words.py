@@ -3,5 +3,5 @@
 import sys, re
 
 contents = sys.stdin.read()
-match_list = re.findall(r'[a-zA-Z]+', contents)
-print(f"{len(match_list)} words")
+match_count = len(re.findall(r'[a-zA-Z]+', contents))
+print(f"{match_count} words")
