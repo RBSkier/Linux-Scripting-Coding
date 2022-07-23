@@ -18,6 +18,6 @@ for dirpath, dirnames, filenames in os.walk(r"lyrics/"):
                     prob_dict[artist] += word_log_prob
                 else:
                     prob_dict[artist] = word_log_prob
-
+#output
 for artist, log_prob in prob_dict.items():
     print(f"{log_prob:10.5f} {artist}")
