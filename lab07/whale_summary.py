@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 import sys
 import re
-import os
 
 species_data={}
 
@@ -9,7 +8,7 @@ for file in sys.argv[1:]:
     with open(file, 'r') as infile:
         for line in infile:
             line = line.strip().lower()
-            line = re.sub(" +", ' ', line)
+            line = re.sub("\s+", ' ', line)
             line = re.sub("([^'s])s($| )", r"\1", line)
             data = re.split(' ', line, 2)
             if data[2].lower() in species_data.keys():

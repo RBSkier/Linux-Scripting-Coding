@@ -1,0 +1,144 @@
+#!/usr/bin/python3
+
+import re, sys
+
+def quit_command():
+    if len(sys.argv) == 2:
+        pattern = re.search(r'^(\d+)q$', sys.argv[1])
+        if pattern:
+            num = int(pattern.group(1))
+            start = 1
+            for line in sys.stdin:
+                print(line, end="")
+                if start == num:
+                    break
+                start += 1
+            return
+
+        pattern = re.search(r'^/(.*)/q$', sys.argv[1])
+        if pattern:
+            regex = pattern.group(1)
+            for line in sys.stdin:
+                print(line, end="")
+                if re.search(regex, line):
+                    break
+
+def print_command():
+    if len(sys.argv) == 2:
+        command_type1 = re.search(r'^(\d+)p$', sys.argv[1])
+        if command_type1:
+            print_line = int(command_type1.group(1))
+            line_num = 1
+            for line in sys.stdin:
+                print(line, end="")
+                if print_line == line_num:
+                    print(line, end="")
+                line_num += 1
+
+        command_type2 = re.search(r'^/(.*)/p$', sys.argv[1])
+        if command_type2:
+            regex = command_type2.group(1)
+            for line in sys.stdin:
+                print(line, end="")
+                if re.search(regex, line):
+                    print(line, end="")
+        command_type3 = re.search(r'^p$', sys.argv[1])
+        if command_type3:
+            for line in sys.stdin:
+                print(line, end="")
+                print(line, end="")
+
+    elif len(sys.argv) == 3 and sys.argv[1] == '-n':
+        command_type1 = re.search(r'^(\d+)p$', sys.argv[2])
+        if command_type1:
+            print_line = int(command_type1.group(1))
+            line_num = 1
+            for line in sys.stdin:
+                if print_line == line_num:
+                    print(line, end="")
+                line_num += 1
+        command_type2 = re.search(r'^/(.*)/p$', sys.argv[2])
+        if command_type2:
+            regex = command_type2.group(1)
+            for line in sys.stdin:
+                if re.search(regex, line):
+                    print(line, end="")
+        command_type3 = re.search(r'^p$', sys.argv[2])
+        if command_type3:
+            for line in sys.stdin:
+                print(line, end="")
+
+
+def delete_command():
+    if len(sys.argv) == 2:
+        command_type1 = re.search(r'^(\d+)d$', sys.argv[1])
+        if command_type1:
+            print_line = int(command_type1.group(1))
+            line_num = 1
+            for line in sys.stdin:
+                if print_line != line_num:
+                    print(line, end="")
+                line_num += 1
+        command_type2 = re.search(r'^/(.*)/d$', sys.argv[1])
+        if command_type2:
+            regex = command_type2.group(1)
+            for line in sys.stdin:
+                if re.search(regex, line):
+                    continue
+                print(line, end="")
+
+
+def substitute_command():
+    command_type1 = re.search(r'^(\d+)s/(.*)/(.*)/(g)?$', sys.argv[1])
+    if command_type1:
+        address = command_type1.group(1)
+        before_str = command_type1.group(2)
+        after_str = command_type1.group(3)
+        global_flag = command_type1.group(4)
+        if address:
+            count = 1
+            for line in sys.stdin:
+                if count == int(address):
+                    if global_flag:
+                        new_line = re.sub(before_str, after_str, line)
+                    else:
+                        new_line = re.sub(before_str, after_str, line, count=1)
+                    print(new_line, end="")
+                else:
+                    print(line, end="")
+                count += 1
+
+    command_type2 = re.search(r'^(/.*/)s/(.*)/(.*)/(g)?$', sys.argv[1])
+    if command_type2:
+        address = command_type2.group(1)
+        before_str = command_type2.group(2)
+        after_str = command_type2.group(3)
+        global_flag = command_type2.group(4)
+        address = re.sub('/', '', address)
+        for line in sys.stdin:
+            if re.search(address, line):
+                if global_flag:
+                    new_line = re.sub(before_str, after_str, line)
+                else:
+                    new_line = re.sub(before_str, after_str, line, count=1)
+                print(new_line, end="")
+            else:
+                print(line, end="")
+
+    command_type3 = re.search(r'^s/(.*)/(.*)/(g)?$', sys.argv[1])
+    if command_type3:
+        before_str = command_type3.group(1)
+        after_str = command_type3.group(2)
+        global_flag = command_type3.group(3)
+        for line in sys.stdin:
+            if global_flag:
+                new_line = re.sub(before_str, after_str, line)
+            else:
+                new_line = re.sub(before_str, after_str, line, count=1)
+            print(new_line, end="")
+
+
+quit_command()
+print_command()
+delete_command()
+substitute_command()
