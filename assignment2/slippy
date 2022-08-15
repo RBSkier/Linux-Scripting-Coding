@@ -1,144 +1,424 @@
 #!/usr/bin/python3
 
-import re, sys
+import re
+import sys
 
-def quit_command():
-    if len(sys.argv) == 2:
-        pattern = re.search(r'^(\d+)q$', sys.argv[1])
-        if pattern:
-            num = int(pattern.group(1))
-            start = 1
-            for line in sys.stdin:
-                print(line, end="")
-                if start == num:
-                    break
-                start += 1
+#functions of slippy
+def quit_command(command, line, line_num):
+    global quit_flag
+    #command type: 3q
+    command_type1 = re.search(r'(\d+)\s*q', command)
+    if command_type1:
+        num = int(command_type1.group(1))
+        if line_num == num:
+            quit_flag = True
+    #command type: /1/q
+    command_type2 = re.search(r'/(.*)/\s*q', command)
+    if command_type2:
+        regex = command_type2.group(1)
+        if re.search(regex, line):
+            quit_flag = True
+
+def print_command(command, n_option, line, line_num, end_line_flag):
+    global print_flag
+    global range_print_flag_1
+    global range_print_flag_2
+    global range_print_flag_3
+    if n_option == True:
+        print_flag = False
+    #command type: 3p
+    command_type1 = re.search(r'^(\d+)p$', command) 
+    if command_type1:
+        print_line = int(command_type1.group(1))
+        if print_line == line_num:
+            print(line)
+    #command type: /3/p
+    command_type2 = re.search(r'^/([^/]*)/p$', command)
+    if command_type2:
+        regex = command_type2.group(1)
+        if re.search(regex, line):
+            print(line)
+    #command type: p
+    command_type3 = re.search(r'^p$', command)
+    if command_type3:
+        print(line)
+    #command type: $p
+    command_type4 = re.search(r'^\$p$', command)
+    if command_type4:
+        if end_line_flag == True:
+            print(line)
+    #command type: /2/,4p
+    command_type5 = re.search(r'^/(.*)/,(\d+)p$', command)
+    if command_type5:
+        start_regex = command_type5.group(1)
+        end_line = int(command_type5.group(2))
+        if re.search(start_regex, line) and end_line > line_num:
+            print(line)
+            range_print_flag_1 = True
+        elif re.search(start_regex, line) and end_line <= line_num:
+            print(line)
+        elif range_print_flag_1 == True and end_line == line_num:
+            print(line)
+            print(line)
+            print_flag = False
+            range_print_flag_1 = False
+        elif range_print_flag_1 == True:
+            print(line)
+    #command type: 1,/.1/p
+    command_type6 = re.search(r'^(\d+),/(.*)/p$', command) 
+    if command_type6:
+        start_line = int(command_type6.group(1))
+        end_regex = command_type6.group(2)
+        if start_line == line_num:
+            print(line)
+            range_print_flag_2 = True
+        elif re.search(end_regex, line) and range_print_flag_2 == True:
+            print(line)
+            range_print_flag_2 = False
+        elif range_print_flag_2 == True:
+            print(line)
+    #command type: /1/,/.1/p
+    command_type7 = re.search(r'^/(.*)/,/(.*)/p$', command)
+    if command_type7:
+        start_regex = command_type7.group(1)
+        end_regex = command_type7.group(2)
+        if re.search(start_regex, line) and range_print_flag_3 == False:
+            print(line)
+            range_print_flag_3 = True
+        elif re.search(end_regex, line) and range_print_flag_3 == True:
+            print(line)
+            range_print_flag_3 = False
+        elif range_print_flag_3 == True:
+            print(line)
+
+
+def delete_command(command, line, line_num, end_line_flag):
+    global print_flag
+    global range_delete_flag
+    global delete_flag
+    #command type: 3d
+    command_type1 = re.search(r'^\s*(\d+)\s*d\s*(#.*)?$', command)  
+    if command_type1:
+        print_line = int(command_type1.group(1))
+        if print_line == line_num:
+            print_flag = False
+            delete_flag = True
+    #command type: /.1d/
+    command_type2 = re.search(r'^\s*/([^/]*)/\s*d\s*(#.*)?$', command)  
+    if command_type2:
+        regex = command_type2.group(1)
+        if re.search(regex, line):
+            print_flag = False
+            delete_flag = True
+    #command type: /2/,/3/d
+    command_type3 = re.search(r'^\s*/(.*)/\s*,\s*/(.*)/\s*d\s*(#.*)?$', command)  
+    if command_type3:
+        start_regex = command_type3.group(1)
+        end_regex = command_type3.group(2)
+        if re.search(start_regex, line):
+            range_delete_flag = True
+            delete_flag = True
+        if re.search(end_regex, line):
+            print_flag = False
+            range_delete_flag = False
+            delete_flag = True
+    #command type: d
+    command_type4 = re.search(r'^\s*d\s*(#.*)?$', command)  
+    if command_type4:
+        print_flag = False
+        first_command_work_flag = True
+        delete_flag = True
+    #command type: $d
+    command_type5 = re.search(r'^\s*\$\s*d\s*(#.*)?$', command)  
+    if command_type5:
+        if end_line_flag == True:
+            print_flag = False
+            delete_flag = True
+    #command type: 2,3d
+    command_type6 = re.search(r'^\s*(\d+)\s*,\s*(\d+)\s*d\s*(#.*)?$', command)  
+    if command_type6:
+        start_line = int(command_type6.group(1))
+        end_line = int(command_type6.group(2))
+        if line_num == start_line:
+            range_delete_flag = True
+            first_command_work_flag = True
+            delete_flag = True
+        if line_num == end_line:
+            print_flag = False
+            range_delete_flag = False
+            delete_flag = True
+    #command type: 3,/4/d
+    command_type7 = re.search(r'^\s*(\d+)\s*,\s*/(.*)/\s*d\s*(#.*)?$', command)  
+    if command_type7:
+        start_line = int(command_type7.group(1))
+        end_regex = command_type7.group(2)
+        if line_num == start_line:
+            range_delete_flag = True
+            delete_flag = True
             return
+        if re.search(end_regex, line) and range_delete_flag == True:
+            print_flag = False
+            range_delete_flag = False
+            delete_flag = True
+    #command type: /./,3d
+    command_type8 = re.search(r'^\s*/(.*)/\s*,\s*(\d+)\s*d\s*(#.*)?$', command)  
+    if command_type8:
+        start_regex = command_type8.group(1)
+        end_line = int(command_type8.group(2))
+        if re.search(start_regex, line):
+            range_delete_flag = True
+            delete_flag = True
+        if line_num == end_line and range_delete_flag == True:
+            print_flag = False
+            range_delete_flag = False
+            delete_flag = True
 
-        pattern = re.search(r'^/(.*)/q$', sys.argv[1])
-        if pattern:
-            regex = pattern.group(1)
-            for line in sys.stdin:
-                print(line, end="")
-                if re.search(regex, line):
-                    break
-
-def print_command():
-    if len(sys.argv) == 2:
-        command_type1 = re.search(r'^(\d+)p$', sys.argv[1])
-        if command_type1:
-            print_line = int(command_type1.group(1))
-            line_num = 1
-            for line in sys.stdin:
-                print(line, end="")
-                if print_line == line_num:
-                    print(line, end="")
-                line_num += 1
-
-        command_type2 = re.search(r'^/(.*)/p$', sys.argv[1])
-        if command_type2:
-            regex = command_type2.group(1)
-            for line in sys.stdin:
-                print(line, end="")
-                if re.search(regex, line):
-                    print(line, end="")
-        command_type3 = re.search(r'^p$', sys.argv[1])
-        if command_type3:
-            for line in sys.stdin:
-                print(line, end="")
-                print(line, end="")
-
-    elif len(sys.argv) == 3 and sys.argv[1] == '-n':
-        command_type1 = re.search(r'^(\d+)p$', sys.argv[2])
-        if command_type1:
-            print_line = int(command_type1.group(1))
-            line_num = 1
-            for line in sys.stdin:
-                if print_line == line_num:
-                    print(line, end="")
-                line_num += 1
-        command_type2 = re.search(r'^/(.*)/p$', sys.argv[2])
-        if command_type2:
-            regex = command_type2.group(1)
-            for line in sys.stdin:
-                if re.search(regex, line):
-                    print(line, end="")
-        command_type3 = re.search(r'^p$', sys.argv[2])
-        if command_type3:
-            for line in sys.stdin:
-                print(line, end="")
-
-
-def delete_command():
-    if len(sys.argv) == 2:
-        command_type1 = re.search(r'^(\d+)d$', sys.argv[1])
-        if command_type1:
-            print_line = int(command_type1.group(1))
-            line_num = 1
-            for line in sys.stdin:
-                if print_line != line_num:
-                    print(line, end="")
-                line_num += 1
-        command_type2 = re.search(r'^/(.*)/d$', sys.argv[1])
-        if command_type2:
-            regex = command_type2.group(1)
-            for line in sys.stdin:
-                if re.search(regex, line):
-                    continue
-                print(line, end="")
-
-
-def substitute_command():
-    command_type1 = re.search(r'^(\d+)s/(.*)/(.*)/(g)?$', sys.argv[1])
+def substitute_command(command, line_num):
+    global print_flag
+    global range_substitute_flag
+    global line
+    global substituted_flag
+    #command type: s/./*/g
+    command_type3 = re.search(r'^s([^\s])(.*)\1(.*)\1(g)?$', command)
+    if command_type3:
+        before_str = command_type3.group(2)
+        after_str = command_type3.group(3)
+        global_flag = command_type3.group(4)
+        if global_flag:
+            line = re.sub(before_str, after_str, line)
+            substituted_flag = True
+        else:
+            line = re.sub(before_str, after_str, line, count=1)
+    #command type: 3s/./*/g
+    command_type1 = re.search(r'^(\d+)s([^\s])(.*)\2(.*)\2(g)?$', command)
     if command_type1:
         address = command_type1.group(1)
-        before_str = command_type1.group(2)
-        after_str = command_type1.group(3)
-        global_flag = command_type1.group(4)
+        before_str = command_type1.group(3)
+        after_str = command_type1.group(4)
+        global_flag = command_type1.group(5)
         if address:
-            count = 1
-            for line in sys.stdin:
-                if count == int(address):
-                    if global_flag:
-                        new_line = re.sub(before_str, after_str, line)
-                    else:
-                        new_line = re.sub(before_str, after_str, line, count=1)
-                    print(new_line, end="")
+            if line_num == int(address):
+                if global_flag:
+                    line = re.sub(before_str, after_str, line)
+                    substituted_flag = True
                 else:
-                    print(line, end="")
-                count += 1
-
-    command_type2 = re.search(r'^(/.*/)s/(.*)/(.*)/(g)?$', sys.argv[1])
+                    line = re.sub(before_str, after_str, line, count=1)
+    #command type: /2/s/./*/g
+    command_type2 = re.search(r'^(/[^/]*/)s([^\s])(.*)\2(.*)\2(g)?$', command)
     if command_type2:
         address = command_type2.group(1)
-        before_str = command_type2.group(2)
-        after_str = command_type2.group(3)
-        global_flag = command_type2.group(4)
+        before_str = command_type2.group(3)
+        after_str = command_type2.group(4)
+        global_flag = command_type2.group(5)
         address = re.sub('/', '', address)
-        for line in sys.stdin:
-            if re.search(address, line):
-                if global_flag:
-                    new_line = re.sub(before_str, after_str, line)
-                else:
-                    new_line = re.sub(before_str, after_str, line, count=1)
-                print(new_line, end="")
-            else:
-                print(line, end="")
-
-    command_type3 = re.search(r'^s/(.*)/(.*)/(g)?$', sys.argv[1])
-    if command_type3:
-        before_str = command_type3.group(1)
-        after_str = command_type3.group(2)
-        global_flag = command_type3.group(3)
-        for line in sys.stdin:
+        if re.search(address, line):
             if global_flag:
-                new_line = re.sub(before_str, after_str, line)
+                line = re.sub(before_str, after_str, line)
+                substituted_flag = True
             else:
-                new_line = re.sub(before_str, after_str, line, count=1)
-            print(new_line, end="")
+                line = re.sub(before_str, after_str, line, count=1)
+    #command type: /2/,/6/s/./*/g
+    command_type4 = re.search(r'^/(.*)/,/(.*)/s([^\s])(.*)\3(.*)\3(g)?$', command)
+    if command_type4:
+        start_regex = command_type4.group(1)
+        end_regex = command_type4.group(2)
+        before_str = command_type4.group(4)
+        after_str = command_type4.group(5)
+        global_flag = command_type4.group(6)
+        if re.search(start_regex, line) and range_substitute_flag == False:
+            range_substitute_flag = True
+        elif re.search(end_regex, line):
+            if global_flag:
+                line = re.sub(before_str, after_str, line)
+            else:
+                line = re.sub(before_str, after_str, line, count=1)
+            range_substitute_flag = False
+        if range_substitute_flag == True:
+            if global_flag:
+                line = re.sub(before_str, after_str, line)
+            else:
+                line = re.sub(before_str, after_str, line, count=1)
 
+def append_command(command, end_line_flag):
+    global print_flag
+    global append_content
+    global range_insert_flag
+    #command type: 3a
+    command_type1 = re.search(r'^(\d+)a (.*)$', command) 
+    if command_type1:
+        print_line = int(command_type1.group(1))
+        if print_line == line_num:
+            append_content = command_type1.group(2)
+    #command type: /3/a
+    command_type2 = re.search(r'^/([^/]*)/a (.*)$', command)
+    if command_type2:
+        regex = command_type2.group(1)
+        if re.search(regex, line):
+            append_content = command_type2.group(2)
+    #command type: a
+    command_type3 = re.search(r'^a (.*)$', command)
+    if command_type3:
+        append_content = command_type3.group(1)
+    #command type: $a
+    command_type4 = re.search(r'^\$a (.*)$', command)
+    if command_type4:
+        if end_line_flag == True:
+            append_content = command_type4.group(1)
 
-quit_command()
-print_command()
-delete_command()
-substitute_command()
+def insert_command(command, end_line_flag):
+    global insert_content
+    global range_insert_flag
+    #command type: 3i
+    command_type1 = re.search(r'^(\d+)i (.*)$', command) 
+    if command_type1:
+        print_line = int(command_type1.group(1))
+        if print_line == line_num:
+            insert_content = command_type1.group(2)
+    #command type: /3/i
+    command_type2 = re.search(r'^/([^/]*)/i (.*)$', command)
+    if command_type2:
+        regex = command_type2.group(1)
+        if re.search(regex, line):
+            insert_content = command_type2.group(2)
+    #command type: i
+    command_type3 = re.search(r'^i (.*)$', command)
+    if command_type3:
+        insert_content = command_type3.group(1)
+    #command type: $i
+    command_type4 = re.search(r'^\$i (.*)$', command)
+    if command_type4:
+        if end_line_flag == True:
+            insert_content = command_type4.group(1)
+
+def change_command(command, end_line_flag):
+    global print_flag
+    global line
+    global range_insert_flag
+    #command type: 3c
+    command_type1 = re.search(r'^(\d+)c (.*)$', command) 
+    if command_type1:
+        print_line = int(command_type1.group(1))
+        if print_line == line_num:
+            line = command_type1.group(2)
+    #command type: /3/c
+    command_type2 = re.search(r'^/([^/]*)/c (.*)$', command)
+    if command_type2:
+        regex = command_type2.group(1)
+        if re.search(regex, line):
+            line = command_type2.group(2)
+    #command type: c
+    command_type3 = re.search(r'^c (.*)$', command)
+    if command_type3:
+        line = command_type3.group(1)
+    #command type: $c
+    command_type4 = re.search(r'^\$c (.*)$', command)
+    if command_type4:
+        if end_line_flag == True:
+            line = command_type4.group(1)
+###########################################################################
+#recognize parameters
+filenames = []
+if len(sys.argv) == 2:
+    n_option = False
+    command_list = re.split(';|\n', sys.argv[1])
+elif len(sys.argv) == 3 and sys.argv[1] == '-n':
+    n_option = True
+    command_list = re.split(';', sys.argv[2])
+elif len(sys.argv) == 3 and sys.argv[1] == '-f':
+    n_option = False
+    filename = sys.argv[2]
+    command_file = open(filename)
+    content_list = list(command_file)
+    command_list = []
+    for content in content_list:
+        commands = re.split(';', content.strip())
+        command_list += commands
+elif len(sys.argv) >= 3 and sys.argv[1] == '-n' and sys.argv[2] != '-f':
+    n_option = True
+    command_list = re.split(';', sys.argv[2])
+    filenames = sys.argv[3:]
+elif len(sys.argv) >= 3 and sys.argv[1] == '-n' and sys.argv[2] == '-f':
+    n_option = True
+    filename = sys.argv[3]
+    command_file = open(filename)
+    content_list = list(command_file)
+    command_list = []
+    for content in content_list:
+        commands = re.split(';', content.strip())
+        command_list += commands
+elif len(sys.argv) >= 3 and sys.argv[1] == '-f':
+    n_option = False
+    filename = sys.argv[2]
+    commands_file = open(filename)
+    command_list = list(commands_file)
+    filenames = sys.argv[3:]
+elif len(sys.argv) >= 3 and sys.argv[1] != '-f' and sys.argv[1] != '-n':
+    n_option = False
+    command_list = re.split(';|\n', sys.argv[1])
+    filenames = sys.argv[2:]
+
+#initial the control flag of the entire lines loop
+line_num = 0
+range_delete_flag = False
+range_substitute_flag = False
+range_print_flag_1 = False
+range_print_flag_2 = False
+range_print_flag_3 = False
+end_line_flag = False
+range_insert_flag = False
+
+#initial lines
+lines = []
+if filenames != []:
+    for filename in filenames:
+        lines += list(open(filename))
+        lines = list(map(lambda x: x.strip(), lines))
+else:
+    try:
+        line = input()
+    except EOFError:
+        exit(0)
+    lines.append(line)
+#loop all lines and output result
+while lines != []:
+    line = lines.pop(0)
+    #judge whether this line is the last line
+    if filenames:
+        if lines == []:
+            end_line_flag = True
+    else:
+        try:
+            next_line = input()
+            lines.append(next_line)
+        except EOFError:
+            end_line_flag = True
+    #initial control flag
+    line_num += 1
+    print_flag = True
+    double_print = False
+    substituted_flag = False
+    quit_flag = False
+    delete_flag = False
+    first_command_work_flag = False
+    append_content = ''
+    insert_content = ''
+    #loop commands for each line
+    for command in command_list:
+        print_command(command, n_option, line, line_num, end_line_flag)
+        delete_command(command, line, line_num, end_line_flag)
+        substitute_command(command, line_num)
+        quit_command(command, line, line_num)
+        append_command(command, end_line_flag)
+        insert_command(command, end_line_flag)
+        change_command(command, end_line_flag)
+        if delete_flag or quit_flag:
+            break
+    #print the result of treating each line
+    if insert_content != '':
+        print(insert_content)
+    if print_flag == True and range_delete_flag == False:
+        print(line)
+    if append_content != '':
+        print(append_content)
+    if quit_flag == True:
+        sys.exit(0)

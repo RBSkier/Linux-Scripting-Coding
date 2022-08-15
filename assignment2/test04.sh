@@ -1,12 +1,12 @@
 #!/bin/dash
 
 # ==============================================================================
-# test00.sh
-# Test the tigger-init
+# test04.sh
+# Test the slippy function
 #
 # Written by: Jinming Liu <z5373811@unsw.edu.au>
-# Date: 2022-07-11
-# For COMP2041/9044 Assignment 1
+# Date: 2022-08-7
+# For COMP2041/9044 Assignment 2
 # ==============================================================================
 
 # add the current directory to the PATH so scripts
@@ -26,17 +26,33 @@ actual_output="$(mktemp)"
 
 trap 'rm "$expected_output" "$actual_output" -rf "$test_dir"' INT HUP QUIT TERM EXIT
 
-# Create a .tigger directory.
-
-mkdir .tigger
-
-# Create tigger repository
-
+# create a sequence from 10 to 100 and use slippy s command to deal with
 cat > "$expected_output" <<EOF
-tigger-init: error: .tigger already exists
+49
+50
+51
+52
+93
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
 EOF
 
-tigger-init > "$actual_output" 2>&1
+seq 49 70 | slippy '5s/5/9/g' > "$actual_output" 2>&1
 
 if ! diff "$expected_output" "$actual_output"; then
     echo "Failed test"
